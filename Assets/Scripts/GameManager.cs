@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject highScoreText;
     [SerializeField] private GameObject gameOverText;
 
+    private AudioSource audioSource;
+
     public static GameManager instance;
     public bool gameStart = false;
 
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -68,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         if (debug)
             return;
+        audioSource.PlayOneShot(audioSource.clip);
         Time.timeScale = 0f;
         gameOverText.SetActive(true);
     }
