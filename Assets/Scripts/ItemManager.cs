@@ -52,6 +52,6 @@ public class ItemManager : MonoBehaviour
     }
     private void SpeedReset()
     {
-        player.speed /= 2f;
+        player.speed /= 1.5f;
     }
 }
