@@ -5,6 +5,9 @@ using UnityEngine;
 public class BackGroundMusic : MonoBehaviour
 {
     public static BackGroundMusic instance;
+
+    public AudioSource audioSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -14,8 +17,9 @@ public class BackGroundMusic : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-        //AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         //audioSource.Play(audioSource.clip.);
         DontDestroyOnLoad(gameObject);
     }

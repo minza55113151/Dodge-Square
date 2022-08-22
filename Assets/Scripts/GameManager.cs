@@ -8,13 +8,17 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private bool debug;
-    
+
+    [SerializeField] private float adsRate;
+
     [SerializeField] private GameObject enemySpawner;
     [SerializeField] private GameObject itemSpawner;
     [SerializeField] private GameObject walkToStartText;
     [SerializeField] private GameObject scoreText;
     [SerializeField] private GameObject highScoreText;
-    [SerializeField] private GameObject gameOverText;
+    [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject reviveButton;
+    private int revive = 0;
 
     private AudioSource audioSource;
 
@@ -42,7 +46,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+        if (Player.instance.movement.magnitude != 0)
         {
             enemySpawner.SetActive(true);
             itemSpawner.SetActive(true);
@@ -56,17 +60,26 @@ public class GameManager : MonoBehaviour
             score += Time.deltaTime;
             scoreText.GetComponent<TMP_Text>().text = ((int)score).ToString();
         }
-        RestartGame();
     }
-    private void RestartGame()
+    public void RestartGame()
     {
-        if (Input.GetKeyDown(KeyCode.R)) 
-        {
-            Input.ResetInputAxes();
-            HighScore();
-            SceneManager.LoadScene("Scene");
-            Time.timeScale = 1f;
-        }   
+        HighScore();
+        if (Random.Range(0f,1f) <= adsRate && revive == 0)
+            AdsManager.instance.PlayAd();
+        SceneManager.LoadScene("Scene");
+        Time.timeScale = 1f; 
+    }
+    public void Revive()
+    {
+        AdsManager.instance.PlayRewardedAd(ReviveCallBack);
+    }
+    public void ReviveCallBack()
+    {
+        revive++;
+        restartButton.SetActive(false);
+        reviveButton.SetActive(false);
+        Player.instance.Revive();
+        Time.timeScale = 1f;
     }
     public void GameOver()
     {
@@ -74,7 +87,15 @@ public class GameManager : MonoBehaviour
             return;
         audioSource.PlayOneShot(audioSource.clip);
         Time.timeScale = 0f;
-        gameOverText.SetActive(true);
+        restartButton.SetActive(true);
+        if(revive == 0)
+        {
+            reviveButton.SetActive(true);
+        }
+        else
+        {
+            reviveButton.SetActive(false);
+        }
     }
 
     public void HighScore()

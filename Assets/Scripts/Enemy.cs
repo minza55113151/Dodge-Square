@@ -28,7 +28,10 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.instance.GameOver();
+            if (Player.instance.isImmortal == false)
+            {
+                GameManager.instance.GameOver();
+            }
         }
         if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Enemy")
         {
