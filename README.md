@@ -11,6 +11,6 @@ You need to doege black square as long as you can.
 
 ## Screenshots
 
-![App Screenshot 1](/Screenshot/1.jpg?raw=true)
-![App Screenshot 2](/Screenshot/2.jpg?raw=true)
+![App Screenshot 1](/Screenshot/1.png?raw=true)
+![App Screenshot 2](/Screenshot/2.png?raw=true)
 
