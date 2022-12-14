@@ -3,6 +3,13 @@
 
 This game you will be a white square.\
 You need to doege black square as long as you can.
+
+## How To Play
+
+- WASD or Arrow key to move.
+- Hit item to use it.
+- Don't hit black square. 
+
 ## Features
 
 - 3 Types of enemy
