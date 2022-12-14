@@ -7,7 +7,7 @@ You need to doege black square as long as you can.
 
 - 3 Types of enemy
 - 3 Types of item
-- black square random direction when hit something instead normally physic.
+- Black square random direction when hit something instead normally physic.
 
 
 ## Screenshots
