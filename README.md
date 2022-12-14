@@ -6,7 +6,7 @@ You need to doege black square as long as you can.
 
 ## Game
 
-- [https://dodge-square.vercel.app](https://dodge-square.vercel.app)
+- [https://dodge-square.vercel.app/](https://dodge-square.vercel.app/)
 
 ## How To Play
 
